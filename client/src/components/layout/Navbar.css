@@ -1,0 +1,9 @@
+.navbarLogo {
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.navbarLogo:hover {
+    opacity: 1;
+}
+

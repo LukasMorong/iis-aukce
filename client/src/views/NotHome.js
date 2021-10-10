@@ -4,7 +4,7 @@ function NotHome() {
 
     return (
         <div>
-            <p class="h1 mt-5">:|</p>
+            <h1 className="h1 mt-5">:|</h1>
         </div>
     )
 }

@@ -1,13 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import './Navbar.css'
+
+import logo from '../../assets/logo.png'
+
 function Navbar() {
 
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <div className="container">
                 <NavLink className="navbar-brand" to="/">
-                    Aukce
+                    <img src={logo} width="30" height="30" className="navbarLogo" alt="LOGO"></img>
                 </NavLink>
                 <button
                     className="navbar-toggler"
@@ -22,7 +26,7 @@ function Navbar() {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav ml-auto">
+                    <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
                                 Home
@@ -31,6 +35,14 @@ function Navbar() {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/nothome">
                                 Not Home
+                            </NavLink>
+                        </li>
+                    </ul>
+
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/login" exact>
+                                Login
                             </NavLink>
                         </li>
                     </ul>
