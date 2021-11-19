@@ -1,0 +1,10 @@
+.auction-bar{
+    width: 100%;
+    max-width: 500px;
+    padding:  15px;
+    height: 100%;
+    margin: auto;
+}
+#btn1{
+    margin-right: 10px;
+}
