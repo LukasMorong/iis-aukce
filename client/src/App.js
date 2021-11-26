@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 //components
 import Navbar from "./components/layout/Navbar";
-import Auction from "./components/AddAuction";
+
 
 //views
 import Home from "./views/Home"
