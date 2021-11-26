@@ -3,13 +3,14 @@ import { Route, Switch } from "react-router-dom";
 
 //components
 import Navbar from "./components/layout/Navbar";
-import Auction from "./components/auction";
+import Auction from "./components/AddAuction";
 
 //views
 import Home from "./views/Home"
 import NotHome from "./views/NotHome"
 import Login from "./views/LoginTMP"
 import Register from "./views/Reg"
+import AuctionForm from "./components/AuctionForm";
 
 
 function App() {
@@ -26,11 +27,13 @@ function App() {
           <Route path="/nothome" component={NotHome}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
+          <Route path="/auctionform" component={AuctionForm}/>
 
         </Switch>
       </main>
+      
       <footer>
-        <Auction/>
+       {/* <Auction/>*/}
       </footer>
     </div>
   );

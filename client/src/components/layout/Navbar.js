@@ -34,7 +34,12 @@ function Navbar() {
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/nothome">
-                                Not Home
+                                Auctions
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/auctionform" exact>
+                                Add auction
                             </NavLink>
                         </li>
                     </ul>
@@ -50,6 +55,7 @@ function Navbar() {
                                 Register
                             </NavLink>
                         </li>
+
                     </ul>
                 </div>
             </div>
