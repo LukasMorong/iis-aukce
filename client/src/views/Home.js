@@ -5,7 +5,7 @@ function Home() {
     const [username, setUsername] = useState(0);
 
     axios.defaults.withCredentials = true;
-    axios.get('http://localhost:8080/api/user', {}, {headers: {withCredentials: true}})
+    axios.get('http://localhost:5000/api/user', {}, {headers: {withCredentials: true}})
         .then((res) => {
             console.log(res.data.status)
             if(res.data.status === 400){

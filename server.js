@@ -1,8 +1,10 @@
 const express = require('express');
-const routes = require('./routes/routes.js');
 const sessions = require('express-session');
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
+
+const userAuth = require('./routes/userAuth.js');
+const auctions = require('./routes/auctions.js');
 
 const app = express();
 
@@ -29,11 +31,16 @@ app.use(sessions({
     resave: false
 }));
 
+//database
+
+
+
 //router
-app.use('/api', routes);
+app.use('/api', userAuth);
+app.use('/api', auctions);
 
 //ready to run
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log('listening on ' + port)
