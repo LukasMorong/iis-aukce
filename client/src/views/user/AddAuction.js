@@ -19,7 +19,7 @@ function AddAuction(props){
         e.preventDefault();
 
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             console.log(res.data.status)
             if(res.data.status === 400){
@@ -47,7 +47,7 @@ function AddAuction(props){
 
 
                 axios.defaults.withCredentials = true;
-                axios.post('http://localhost/api/auction', auctionData,{}, {headers: {withCredentials: true}})
+                axios.post('http://localhost:5000/api/auction', auctionData,{}, {headers: {withCredentials: true}})
                     .then((res) => {
                         if(res.data.status === 200){
                             props.history.push("/")

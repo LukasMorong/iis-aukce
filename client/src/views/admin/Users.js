@@ -7,7 +7,7 @@ function Users(props) {
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                return
@@ -26,7 +26,7 @@ function Users(props) {
                     role: data.role
                 }
 
-                axios.get('http://localhost/api/admin/users', {}, {headers: {withCredentials: true}})
+                axios.get('http://localhost:5000/api/admin/users', {}, {headers: {withCredentials: true}})
                     .then((res) => {
                         const userList = res.data.data
 

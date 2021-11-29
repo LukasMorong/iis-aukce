@@ -93,6 +93,7 @@ function Navbar(props) {
                     User actions
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link className="dropdown-item" to="/actionFeed">Auction Feed</Link>
                     <Link className="dropdown-item" to="/myAuctions">My auctions</Link>
                     <Link className="dropdown-item" to="/addAuction">Add auction</Link>
                 </div>
@@ -129,6 +130,7 @@ function Navbar(props) {
                     User actions
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link className="dropdown-item" to="/actionFeed">Auction Feed</Link>
                     <Link className="dropdown-item" to="/myAuctions">My auctions</Link>
                     <Link className="dropdown-item" to="/addAuction">Add auction</Link>
                 </div>

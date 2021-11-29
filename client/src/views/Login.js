@@ -19,7 +19,7 @@ function Login(props) {
         }
 
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost/api/login', authData, {headers: {withCredentials: true}})
+        axios.post('http://localhost:5000/api/login', authData, {headers: {withCredentials: true}})
             .then((res) => {
                 if(res.data.status === 200){
                     props.history.push("/")

@@ -9,7 +9,7 @@ function Requests(props) {
     }
 
     function getRequests(userId) {
-        axios.get('http://localhost/api/licitator/requests', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost:5000/api/licitator/requests', {}, {headers: {withCredentials: true}})
         .then((res) => {
 
             const auctionList = res.data.data
@@ -45,7 +45,7 @@ function Requests(props) {
         }
 
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost/api/licitator/licitate', licitateData, {}, {headers: {withCredentials: true}})
+        axios.post('http://localhost:5000/api/licitator/licitate', licitateData, {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                 alert('action error')
@@ -64,7 +64,7 @@ function Requests(props) {
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                return
