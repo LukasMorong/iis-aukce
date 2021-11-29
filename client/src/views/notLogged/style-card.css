@@ -1,0 +1,30 @@
+#card_UI{
+    width: 20rem;
+    margin-top: 6rem;
+    margin-left: 6rem;
+
+}
+#card_UI{
+    text-decoration: none;
+}
+
+#card_UI:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253)!important;
+}
+#card_UI_text{
+    font-size: .9rem;
+    padding: 0.4rem 1.9rem;
+}
+.container-fluid.row{
+    padding-top: 6rem;
+}
+#overflow{
+    overflow: hidden;
+}
+#card_UI_img{
+    transform: scale(1);
+    transition: transform 0.5s ease;
+}
+#card_UI_img:hover{
+    transform: scale(1.5);
+}

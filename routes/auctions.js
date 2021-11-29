@@ -135,11 +135,11 @@ router.delete('/auction/:id', (req,res) => {
 });
 
 //@route    GET api/auctions
-//@desc     get actions
+//@desc     get active actions
 //@access   Public
 router.get('/auctions', (req,res) => {
     connectionPool.getConnection((err, connection) => {
-        connection.query(`SELECT * FROM auctions`, (err, result, fields) => {
+        connection.query(`SELECT * FROM auctions WHERE status='approved'`, (err, result, fields) => {
             connection.release();
             if(err){
                 console.log(err)

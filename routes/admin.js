@@ -123,7 +123,7 @@ router.get('/auctions', (req,res) => {
 
 //@route    GET api/admin/auction/:id
 //@desc     get all users auctions
-//@access   Private, min licitator role(1)
+//@access   Private, admin
 router.delete('/auction/:id', (req,res) => {
     const auctionId = parseInt(req.params.id)
     const token = req.cookies.auth
@@ -151,6 +151,65 @@ router.delete('/auction/:id', (req,res) => {
                     }
 
                     connection.query(`DELETE FROM auctions WHERE id=${auctionId}`, (err, result, fields) => {
+                        connection.release()
+
+                        if(err){
+                            res.json({
+                                status: 500,
+                                message: 'database error'
+                            })
+                            return
+                        }
+
+                        res.json({
+                            status: 200,
+                            message: 'sucess'
+                        })
+                        return
+
+                    })
+                })
+            })
+        })
+    } else {
+        res.json({
+            status: 403,
+            message: 'access denied',
+        })
+    }
+});
+
+//@route    GET api/admin/grant
+//@desc     set role to user
+//@access   Private, admin
+router.post('/grant', (req,res) => {
+    const userId = req.body.userId
+    const newRole = req.body.role
+    const token = req.cookies.auth
+
+    if(token){
+        jwt.verify(token, jwtSecret.secret, (err, auth) => {
+            connectionPool.getConnection((err, connection) => {
+                connection.query(`SELECT role FROM users WHERE id=${auth.id}`, (err, result, fields) => {
+                    if(err){
+                        res.json({
+                            status: 500,
+                            message: 'database error'
+                        })
+                        connection.release();
+                        return
+                    }
+
+                    if(result[0].role < 3){
+                        res.json({
+                            status: 403,
+                            message: 'access denied'
+                        })
+                        connection.release();
+                        return
+                    }
+
+                    connection.query(`UPDATE usres SET role=${newRole} WHERE id=${userId}`, (err, result, fields) => {
                         connection.release()
 
                         if(err){

@@ -1,0 +1,31 @@
+.input-group{
+    width: 10vw!important;
+    margin-left: 1.5vw;
+}
+#card_auction{
+    margin: auto;
+    margin-top: 4rem!important;
+    
+}
+#title{
+    margin-left: 0.5vw;
+}
+#auction_card_text{
+    margin-left: 2vw;
+}
+#card_body{
+    padding-top: 2vh!important;
+}
+#input_cena{
+    width: 25vw!important;
+}
+#footer_flex{
+    text-align: center;
+}
+#popis_aukcia{
+    max-width: 25vw!important;
+}
+
+#viewImage {
+    max-width: 50%;
+}

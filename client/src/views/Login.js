@@ -17,6 +17,18 @@ function Login(props) {
             email: formData.email,
             password: formData.password
         }
+        if(!formData.email){
+            alert('email required')
+            return
+        }else if(!/\S+@\S+\.\S+/.test(formData.email)){
+            alert('invalid email - example@example.com')
+            return
+        }
+
+        if(!formData.password){
+            alert('password required')
+            return
+        }
 
         axios.defaults.withCredentials = true;
         axios.post('http://localhost:5000/api/login', authData, {headers: {withCredentials: true}})

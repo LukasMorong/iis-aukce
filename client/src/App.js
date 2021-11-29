@@ -11,8 +11,6 @@ import Footer from './components/layout/Footer';
 //views
 import Login from "./views/Login"
 import Register from "./views/Register"
-import NotLoggedHome from "./views/notLogged/Home"
-import UserHome from "./views/user/Home"
 import UserMyAuctions from "./views/user/MyAuctions";
 import UserAddAuction from "./views/user/AddAuction";
 import UserProfile from "./views/user/Profile"
@@ -20,6 +18,8 @@ import Licitations from "./views/licitator/Licitations"
 import Requests from "./views/licitator/Requests"
 import UsersAdmin from "./views/admin/Users"
 import AuctionsAdmin from "./views/admin/Auctions"
+import AuctionFeed from './views/notLogged/AuctionFeed';
+import AuctionView from './views/notLogged/AuctionView';
 
 
 function App() {
@@ -59,10 +59,12 @@ function App() {
             <Route path="/register" component={Register}/>
 
             {/* notLogged */}
-            {role === 0? <Route path="/" component={NotLoggedHome} exact /> : ''}
+            {role === 0? <Route path="/" component={AuctionFeed} exact /> : ''}
+            <Route path="/actionFeed" component={AuctionFeed} exact/>
+            <Route exact path="/auction/:id" component={AuctionView} />
 
             {/* user */}
-            {role === 1? <Route path="/" component={UserHome} exact /> : ''}
+            {role === 1? <Route path="/" component={AuctionFeed} exact /> : ''}
             <Route path="/myAuctions" component={UserMyAuctions} exact/>
             <Route path="/addAuction" component={UserAddAuction} exact/>
             <Route path="/profile" component={UserProfile} exact/>

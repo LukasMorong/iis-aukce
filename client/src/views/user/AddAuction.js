@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Select from 'react-select'
 
+import './AddAuction.css'
+
 
 function AddAuction(props){
     const [formData, setFormData] = useState({
@@ -17,6 +19,30 @@ function AddAuction(props){
 
     function addAuction(e) {
         e.preventDefault();
+        if(!formData.name){
+            alert('name required')
+            return
+        }
+        if(!formData.transactionType){
+            alert('transaction required')
+            return
+        }
+        if(!formData.auctionType){
+            alert('auction required')
+            return
+        }
+        if(!formData.startingPrice){
+            alert('starting price required')
+            return
+        }
+        if(!/^[0-9]+$/.test(formData.startingPrice)){
+            alert('only digits')
+            return
+        }
+        if(!formData.description){
+            alert('description required')
+            return
+        }
 
         axios.defaults.withCredentials = true;
         axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
@@ -71,54 +97,52 @@ function AddAuction(props){
 
 
     return(  
-        <form>
-                <h1 className='h1 mt-5 mb-5'>Create new auction</h1>
-                <div className="form-group">
-                    <label htmlFor="text">Name</label>
-                    <input onChange={(e) => setFormData({...formData, name: e.target.value})}  value={formData.name} type="text" className="form-control" id="name" placeholder="Name..."></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="transactionTypeSelect">Transaction type</label>
-                    <Select
-                        id="transactionTypeSelect"
-                        name="form-field-name"
-                        value={formData.transactionType}
-                        options={transactionTypeOpts}
-                        placeholder="Select transaction type"
-                        searchable={false}
-                        onChange={(e) => 
-                            setFormData({...formData, transactionType: e})}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="auctionTypeSelect">Auction type</label>
-                    <Select
-                        id="auctionTypeSelect"
-                        name="form-field-name"
-                        value={formData.auctionType}
-                        options={auctionTypeOpts}
-                        placeholder="Select auction type"
-                        searchable={false}
-                        onChange={(e) => 
-                            setFormData({...formData, auctionType : e})}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="text">Starting price</label>
-                    <input onChange={(e) => setFormData({...formData, startingPrice: e.target.value})}  value={formData.startingPrice} type="text" className="form-control" id="name" placeholder="Price in €..."></input>
-                </div>
-            
-            
-                <div className="form-group " >
-                    <label htmlFor="exampleFormControlTextarea1">Auction description</label>
-                    <textarea onChange={(e) => setFormData({...formData, description: e.target.value})}  value={formData.description} className="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Description..."></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleFormControlFile1">Add photo</label>
-                    <input nChange={(e) => setFormData({...formData, image: e.target.value})}  value={formData.image} type="file" className="form-control-file" id="exampleFormControlFile1"></input>
-                </div>
-                <button type="submit" className="btn btn-dark mt-5" onClick={addAuction}>Create Auction</button>
-        </form>
+        <div className="card text-center shadow" id="auction_card">
+            <form>
+                    <h1 className='h1 mt-5 mb-5'>Create new auction</h1>
+                    <div className="form-group">
+                        <label htmlFor="text">Name</label>
+                        <input onChange={(e) => setFormData({...formData, name: e.target.value})}  value={formData.name} type="text" className="form-control" id="name" placeholder="Name..."></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="transactionTypeSelect">Transaction type</label>
+                        <Select
+                            id="transactionTypeSelect"
+                            name="form-field-name"
+                            value={formData.transactionType}
+                            options={transactionTypeOpts}
+                            placeholder="Select transaction type"
+                            searchable={false}
+                            onChange={(e) => 
+                                setFormData({...formData, transactionType: e})}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="auctionTypeSelect">Auction type</label>
+                        <Select
+                            id="auctionTypeSelect"
+                            name="form-field-name"
+                            value={formData.auctionType}
+                            options={auctionTypeOpts}
+                            placeholder="Select auction type"
+                            searchable={false}
+                            onChange={(e) => 
+                                setFormData({...formData, auctionType : e})}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="text">Starting price</label>
+                        <input onChange={(e) => setFormData({...formData, startingPrice: e.target.value})}  value={formData.startingPrice} type="text" className="form-control" id="name" placeholder="Price in €..."></input>
+                    </div>
+                
+                
+                    <div className="form-group " >
+                        <label htmlFor="exampleFormControlTextarea1">Auction description</label>
+                        <textarea onChange={(e) => setFormData({...formData, description: e.target.value})}  value={formData.description} className="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Description..."></textarea>
+                    </div>
+                    <button type="submit" id="btn_auction" className="btn btn-dark mt-5" onClick={addAuction}>Create Auction</button>
+            </form>
+        </div>
     )
 }
 export default AddAuction
