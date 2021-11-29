@@ -1,34 +1,83 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 
-function Licitations() {
-    const [userId, setUserId] = useState('0');
-    const [userEmail, setUserEmail] = useState('');
-    const [role, setRole] = useState([]);
+function Licitations(props) {
+    const [auctionTableList, setAuctionTableList] = useState([]);
+
+    function trim(text, len){
+        return text.length > len? text.substring(0,len) + '...' : text
+    }
+
+    function getLicitations(userId) {
+        axios.get('http://localhost:5000/api/licitator/licitations', {}, {headers: {withCredentials: true}})
+        .then((res) => {
+            console.log(res)
+            const auctionList = res.data.data
+            let tmpTableData = auctionList.map((auction) => (
+
+                    <tr key={auction.id}>
+                        <th scope="row">{auction.id}</th>
+                        <td>{trim(auction.name, 15)}</td>
+                        <td>{trim(auction.description, 10)}</td>
+                        <td>{auction.status}</td>
+                        <td>
+                            <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>View</button>
+                            <button type="button" className="btn btn-success mr-2" onClick={() => alert('to do')}>Approve participators</button>
+                            <button type="button" className="btn btn-danger mr-2" onClick={() => alert('to do')}>Close auction</button>
+                        </td>
+                    </tr>
+
+            ))
+
+            setAuctionTableList(tmpTableData)
+        })
+    }
     
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
         axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
-            console.log(res.data.status)
             if(res.data.status === 400){
                return
             }
 
             if(res.data.status === 200){
                 const {data} = res.data
-                setUserId(data.userId)
-                setRole(data.role)
-                setUserEmail(data.email)
+
+                if(data.role < 2){
+                    props.history.push("/")
+                    return
+                }
+
+                const currentUser = {
+                    id: data.userId,
+                    role: data.role
+                }
+                getLicitations(currentUser.id)
             }
         })
       }, []);
 
 
     return (
-        <div>
+        <div className="container">
             <h1 className="h1 mt-5">List Of Licitations</h1>
+
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {auctionTableList}
+                </tbody>
+            </table>
         </div>
     )
 }

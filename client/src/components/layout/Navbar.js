@@ -89,7 +89,7 @@ function Navbar(props) {
                 </NavLink>
             </li>
             <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to={window.location.pathname} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <Link className="nav-link dropdown-toggle" to={window.location.pathname} onClick={ (event) => event.preventDefault() } id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     User actions
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -116,7 +116,7 @@ function Navbar(props) {
                 </NavLink>
             </li>
             <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to={window.location.pathname} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <Link className="nav-link dropdown-toggle" to={window.location.pathname} onClick={ (event) => event.preventDefault() } id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Licitator actions
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -125,7 +125,7 @@ function Navbar(props) {
                 </div>
             </li>
             <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to={window.location.pathname} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <Link className="nav-link dropdown-toggle" to={window.location.pathname} onClick={ (event) => event.preventDefault() } id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     User actions
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -8,6 +8,46 @@ function Auctions(props) {
         return text.length > len? text.substring(0,len) + '...' : text
     }
 
+    function deleteAuction(auctionId, userId) {
+        axios.defaults.withCredentials = true;
+        axios.delete(`http://localhost:5000/api/user/auction/${auctionId}`, {}, {headers: {withCredentials: true}})
+        .then((res) => {
+            if(res.data.status === 400){
+                alert('action failed!')
+               return
+            }
+
+            if(res.data.status === 200){
+                getAuctions(userId)
+            }
+        })
+    }
+
+    function getAuctions(userId) {
+        axios.defaults.withCredentials = true;
+        axios.get('http://localhost:5000/api/user/auctions', {}, {headers: {withCredentials: true}})
+        .then((res) => {
+            console.log(res)
+            const auctionList = res.data.data
+            let tmpTableData = auctionList.map((auction) => (
+
+                    <tr key={auction.id}>
+                        <th scope="row">{auction.id}</th>
+                        <td>{trim(auction.name, 15)}</td>
+                        <td>{trim(auction.description, 10)}</td>
+                        <td>{auction.status}</td>
+                        <td>
+                            <button type="button" className="btn btn-success mr-2" onClick={() => alert('to do')}>View</button>
+                            <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>Edit</button>
+                            <button type="button" className="btn btn-danger mr-2" onClick={() => deleteAuction(auction.id, userId)}>Delete</button>
+                        </td>
+                    </tr>
+
+            ))
+
+            setAuctionTableList(tmpTableData)
+        })
+    }
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
@@ -42,8 +82,8 @@ function Auctions(props) {
                                     <td>{trim(auction.description, 10)}</td>
                                     <td>{auction.status}</td>
                                     <td>
-                                        <button type="button" className="btn btn-primary mr-2">Edit</button>
-                                        <button type="button" className="btn btn-danger">Delete</button>
+                                        <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>Edit</button>
+                                        <button type="button" className="btn btn-danger" onClick={() => alert('to do')}>Delete</button>
                                     </td>
                                 </tr>
 

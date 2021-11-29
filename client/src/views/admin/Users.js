@@ -39,13 +39,13 @@ function Users(props) {
                                     <td>{user.lastname}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <button type="button" className="btn btn-primary mr-2">Edit</button>
+                                        <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>Edit</button>
                                         {currentUser.id === user.id ? 
                                             <span className="d-inline-block" tabIndex="0" data-toggle="tooltip" title="You cant delete yourself">
                                                 <button className="btn btn-danger" type="button" disabled>Delete</button>
                                             </span>
                                             : 
-                                            <button type="button" className="btn btn-danger">Delete</button>
+                                            <button type="button" className="btn btn-danger" onClick={() => alert('to do')}>Delete</button>
                                         }
                                     </td>
                                 </tr>

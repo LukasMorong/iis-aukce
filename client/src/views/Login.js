@@ -35,14 +35,14 @@ function Login(props) {
             <div className="card text-center shadow" id="card_login">
                 <img src={userIco} alt="divocak1" className="card-img-top" id="login_obrazok"/>
                 <form className="m-auto" >
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         <input onChange={(e) => setFormData({...formData, email: e.target.value})}  value={formData.email}type="email" className="form-control" id="name" placeholder="Email"></input>
                     </div>
                     <div className="form-group">
                         <input onChange={(e) => setFormData({...formData, password: e.target.value})}  value={formData.password}type="password" className="form-control" id="password" placeholder="Password"></input>
                     </div>
                     <div>
-                    <button type="submit" className="btn btn-dark" onClick={loginUser}>Login</button>
+                    <button type="submit" className="btn btn-dark mt-4 mb-4" onClick={loginUser}>Login</button>
                     </div>
                 </form>
             </div>

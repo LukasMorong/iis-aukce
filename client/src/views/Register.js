@@ -54,7 +54,7 @@ function Register(props) {
         <div className="card text-center shadow" id="card_reg">
             <img src={userIco} alt="divocak1" className="card-img-top mb-2" id="reg_obrazok"/>
             <form className="m-auto" >
-                <div className="form-group">
+                <div className="form-group mt-3">
                     <input onChange={(e) => setFormData({...formData, firstName: e.target.value})}  value={formData.firstName} type="text" className="form-control" id="name" placeholder="First name"></input>
                 </div>
                 <div className="form-group">
@@ -70,7 +70,7 @@ function Register(props) {
                     <input onChange={(e) => setFormData({...formData, password2: e.target.value})} value={formData.password2} type="password" className="form-control" id="password2" placeholder="Confirm Password"></input>
                 </div>
                 <div>
-                <button type="submit" className="btn btn-dark mt-3" onClick={registerUser}>Register</button>
+                <button type="submit" className="btn btn-dark mt-3  mb-4" onClick={registerUser}>Register</button>
                 </div>
             </form>
         </div>

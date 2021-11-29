@@ -121,4 +121,62 @@ router.get('/auctions', (req,res) => {
     }
 });
 
+//@route    GET api/admin/auction/:id
+//@desc     get all users auctions
+//@access   Private, min licitator role(1)
+router.delete('/auction/:id', (req,res) => {
+    const auctionId = parseInt(req.params.id)
+    const token = req.cookies.auth
+
+    if(token){
+        jwt.verify(token, jwtSecret.secret, (err, auth) => {
+            connectionPool.getConnection((err, connection) => {
+                connection.query(`SELECT role FROM users WHERE id=${auth.id}`, (err, result, fields) => {
+                    if(err){
+                        res.json({
+                            status: 500,
+                            message: 'database error'
+                        })
+                        connection.release();
+                        return
+                    }
+
+                    if(result[0].role < 3){
+                        res.json({
+                            status: 403,
+                            message: 'access denied'
+                        })
+                        connection.release();
+                        return
+                    }
+
+                    connection.query(`DELETE FROM auctions WHERE id=${auctionId}`, (err, result, fields) => {
+                        connection.release()
+
+                        if(err){
+                            res.json({
+                                status: 500,
+                                message: 'database error'
+                            })
+                            return
+                        }
+
+                        res.json({
+                            status: 200,
+                            message: 'sucess'
+                        })
+                        return
+
+                    })
+                })
+            })
+        })
+    } else {
+        res.json({
+            status: 403,
+            message: 'access denied',
+        })
+    }
+});
+
 module.exports = router;

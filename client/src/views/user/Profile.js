@@ -64,7 +64,7 @@ function Profile(props) {
                     </h6>
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-dark mt-3">Edit</button>
+                    <button type="submit" className="btn btn-dark mt-3 mb-4">Edit</button>
                 </div>
             </form>
         </div>

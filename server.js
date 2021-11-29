@@ -6,6 +6,7 @@ const userAuth = require('./routes/userAuth.js')
 const auctions = require('./routes/auctions.js')
 const adminRoutes = require('./routes/admin.js')
 const licitatorRoutes = require('./routes/licitator.js')
+const userRoutes = require('./routes/user.js')
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use('/api', userAuth)
 app.use('/api', auctions)
 app.use('/api/admin', adminRoutes)
 app.use('/api/licitator', licitatorRoutes)
+app.use('/api/user', userRoutes)
 
 //ready to run
 const port = process.env.PORT || 5000
