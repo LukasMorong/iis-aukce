@@ -30,6 +30,15 @@ app.use('/api/admin', adminRoutes)
 app.use('/api/licitator', licitatorRoutes)
 app.use('/api/user', userRoutes)
 
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 //ready to run
 const port = process.env.PORT || 5000
 
