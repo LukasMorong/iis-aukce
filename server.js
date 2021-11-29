@@ -1,6 +1,7 @@
 const express = require('express')
 const cookieParser = require("cookie-parser")
 const cors = require('cors')
+const path = require("path");
 
 const userAuth = require('./routes/userAuth.js')
 const auctions = require('./routes/auctions.js')
