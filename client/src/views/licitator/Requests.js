@@ -22,7 +22,7 @@ function Requests(props) {
                         <td>{auction.status}</td>
                         <td>
                             <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>View</button>
-                            {userId === auction.id ? 
+                            {userId === auction.author ? 
                                 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="You cant licitate your own auction">
                                     <button class="btn btn-success" type="button"  onClick={() => handleLicitate(auction.id, userId)} disabled>Licitate</button>
                                 </span>
