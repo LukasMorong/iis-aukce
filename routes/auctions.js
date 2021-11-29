@@ -5,27 +5,34 @@ const connectionPool = require('../connectionPool');
 //@desc     create auction
 //@access   Private, role logged
 router.post('/auction', (req,res) => {
-
+    console.log(req.body)
     if(req.body.name && 
-        req.body.category &&
-        req.body.type &&
-        req.body.rule &&
+        req.body.transactionType &&
+        req.body.auctionType &&
+        req.body.description &&
         req.body.startingPrice &&
-        req.body.description){
+        req.body.startTime &&
+        req.body.duration &&
+        req.body.userId){
 
 
         const auctionData = {
             name: req.body.name,
-            category: req.body.category,
-            type: req.body.type,
-            rule: req.body.rule,
-            startingPrice: parseInt(req.body.startingPrice),
-            description: req.body.description
+            description: req.body.description,
+            startTime: req.body.startTime,
+            endTime: req.body.startTime + req.body.duration,                    //add valid duration
+            minBid: req.body.transactionType === 'sell' ? req.body.startingPrice : 0,
+            maxBid: req.body.transactionType === 'buy' ? req.body.startingPrice : 0,
+            status: 'created',
+            transactionType: req.body.transactionType,
+            auctionType: req.body.auctionType,
+            author: req.body.userId
         }
 
         connectionPool.getConnection((err, connection) => {
-            connection.query(`INSERT INTO auctions (name, category, type, rule, startingPrice, hiloBid, description) 
-                                VALUES('${auctionData.name}', '${auctionData.category}', '${auctionData.type}', '${auctionData.rule}', '${auctionData.startingPrice}', '${0}', '${auctionData.description}');`, (err, result, fields) => {
+            connection.query(`INSERT INTO auctions (name, description, startTime, endTime, minBid, maxBid, status, transactionType, auctionType, author) 
+                                VALUES('${auctionData.name}', '${auctionData.description}', '${auctionData.startTime}', '${auctionData.endTime}', '${auctionData.minBid}', '${auctionData.maxBid}', '${auctionData.status}', '${auctionData.transactionType}', '${auctionData.auctionType}', '${auctionData.author}');`, (err, result, fields) => {
+                connection.release();
                 if(err){
                     console.log(err)
                     res.json({
@@ -36,7 +43,7 @@ router.post('/auction', (req,res) => {
                 }
                 res.json({
                     status: 200,
-                    message: 'sucess'
+                    message: 'success'
                 })
                 return
             
@@ -45,7 +52,7 @@ router.post('/auction', (req,res) => {
 
     } else {
         res.json({
-            status: 400,
+            status: 500,
             message: 'invalid data'
         })
     }
@@ -59,6 +66,7 @@ router.get('/auction/:id', (req,res) => {
 
     connectionPool.getConnection((err, connection) => {
         connection.query(`SELECT * FROM auctions WHERE id='${id}'`, (err, result, fields) => {
+            connection.release();
             if(err){
                 console.log(err)
                 res.json({
@@ -69,7 +77,7 @@ router.get('/auction/:id', (req,res) => {
             }
             res.json({
                 status: 200,
-                message: 'sucess',
+                message: 'success',
                 data: result
             })
             return
@@ -91,6 +99,7 @@ router.delete('/auction/:id', (req,res) => {
                     status: 500,
                     message: 'database error'
                 })
+                connection.release();
                 return
             }
 
@@ -99,11 +108,13 @@ router.delete('/auction/:id', (req,res) => {
                     status: 403,
                     message: 'auction doesnt exist'
                 })
+                connection.release();
                 return
             }
 
 
             connection.query(`DELETE FROM auctions WHERE id='${id}'`, (err, result, fields) => {
+                connection.release();
                 if(err){
                     console.log(err)
                     res.json({
@@ -112,13 +123,11 @@ router.delete('/auction/:id', (req,res) => {
                     })
                     return
                 }
-
-
             })
 
             res.json({
                 status: 200,
-                message: 'sucess'
+                message: 'success'
             })
             return
         })
@@ -131,6 +140,7 @@ router.delete('/auction/:id', (req,res) => {
 router.get('/auctions', (req,res) => {
     connectionPool.getConnection((err, connection) => {
         connection.query(`SELECT * FROM auctions`, (err, result, fields) => {
+            connection.release();
             if(err){
                 console.log(err)
                 res.json({
@@ -157,6 +167,7 @@ router.get('/auctions/:category', (req,res) => {
 
     connectionPool.getConnection((err, connection) => {
         connection.query(`SELECT * FROM auctions WHERE category='${category}'`, (err, result, fields) => {
+            connection.release();
             if(err){
                 console.log(err)
                 res.json({
