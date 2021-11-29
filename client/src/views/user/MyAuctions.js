@@ -12,7 +12,7 @@ function MyAuctions(props) {
 
     function deleteAuction(auctionId, userId) {
         axios.defaults.withCredentials = true;
-        axios.delete(`http://localhost:5000/api/user/auction/${auctionId}`, {}, {headers: {withCredentials: true}})
+        axios.delete(`http://localhost/api/user/auction/${auctionId}`, {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                 alert('action failed!')
@@ -27,7 +27,7 @@ function MyAuctions(props) {
 
     function getAuctions(userId) {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost:5000/api/user/auctions', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost/api/user/auctions', {}, {headers: {withCredentials: true}})
         .then((res) => {
             console.log(res)
             const auctionList = res.data.data
@@ -54,7 +54,7 @@ function MyAuctions(props) {
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                return

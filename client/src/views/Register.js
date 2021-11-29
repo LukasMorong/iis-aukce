@@ -30,11 +30,11 @@ function Register(props) {
         }
 
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost:5000/api/register', userData, {headers: {withCredentials: true}})
+        axios.post('http://localhost/api/register', userData, {headers: {withCredentials: true}})
             .then((res) => {
                 console.log(res)
                 if(res.data.status === 200){
-                    axios.post('http://localhost:5000/api/login', userData, {headers: {withCredentials: true}})
+                    axios.post('http://localhost/api/login', userData, {headers: {withCredentials: true}})
                     .then((res) => {
                         if(res.data.status === 200){
                             props.history.push("/")

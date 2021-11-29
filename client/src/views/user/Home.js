@@ -9,7 +9,7 @@ function Home() {
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             console.log(res.data.status)
             if(res.data.status === 400){

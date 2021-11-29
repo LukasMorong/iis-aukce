@@ -9,7 +9,7 @@ function Licitations(props) {
     }
 
     function getLicitations(userId) {
-        axios.get('http://localhost:5000/api/licitator/licitations', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost/api/licitator/licitations', {}, {headers: {withCredentials: true}})
         .then((res) => {
             console.log(res)
             const auctionList = res.data.data
@@ -36,7 +36,7 @@ function Licitations(props) {
 
     React.useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
+        axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
         .then((res) => {
             if(res.data.status === 400){
                return

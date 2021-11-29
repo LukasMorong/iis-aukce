@@ -28,7 +28,7 @@ function App() {
 
   React.useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get('http://localhost:5000/api/currentUser', {}, {headers: {withCredentials: true}})
+    axios.get('http://localhost/api/currentUser', {}, {headers: {withCredentials: true}})
     .then((res) => {
         if(res.data.status === 400){
            return
