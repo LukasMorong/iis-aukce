@@ -21,7 +21,7 @@ function Requests(props) {
                         <td>{trim(auction.description, 10)}</td>
                         <td>{auction.status}</td>
                         <td>
-                            <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>View</button>
+                            <button type="button" className="btn btn-primary mr-2" onClick={() => props.history.push("/auction/" + auction.id)}>View</button>
                             {userId === auction.author ? 
                                 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="You cant licitate your own auction">
                                     <button class="btn btn-success" type="button"  onClick={() => handleLicitate(auction.id, userId)} disabled>Licitate</button>

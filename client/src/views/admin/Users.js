@@ -39,7 +39,9 @@ function Users(props) {
                                     <td>{user.lastname}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')}>Edit</button>
+                                        <span className="d-inline-block" tabIndex="0" data-toggle="tooltip" title="TODO">
+                                            <button type="button" className="btn btn-primary mr-2" onClick={() => alert('to do')} disabled>Edit</button>
+                                        </span>
                                         {currentUser.id === user.id ? 
                                             <span className="d-inline-block" tabIndex="0" data-toggle="tooltip" title="You cant delete yourself">
                                                 <button className="btn btn-danger" type="button" disabled>Delete</button>

@@ -35,7 +35,7 @@ function AddAuction(props){
             alert('starting price required')
             return
         }
-        if(!/^[0-9]+$/.test(formData.startingPrice)){
+        if(!/^[0-9\.\,]+$/.test(formData.startingPrice)){
             alert('only digits')
             return
         }

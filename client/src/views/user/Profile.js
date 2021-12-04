@@ -64,7 +64,9 @@ function Profile(props) {
                     </h6>
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-dark mt-3 mb-4">Edit</button>
+                    <span className="d-inline-block" tabIndex="0" data-toggle="tooltip" title="TODO">
+                        <button type="button" className="btn btn-dark mt-3 mb-4" disabled>Edit</button>
+                    </span>
                 </div>
             </form>
         </div>
